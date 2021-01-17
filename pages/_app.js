@@ -10,7 +10,7 @@ import getConfig from 'next/config'
 import ContextWrapper from '../Context/ContextWrapper'
 import { appWithTranslation } from '../i18n'
 import Router from 'next/router'
-import { parseCookies  } from 'nookies'
+import nookies, { parseCookies, setCookie  } from 'nookies'
 
 import Header from '../src/components/Header'
 
@@ -59,19 +59,29 @@ function redirectUser(ctx, location) {
 //fetch initial site-wide data here
 MyApp.getInitialProps = async ({Component, ctx}) => {
     let pageProps = {}
-    const jwt = parseCookies(ctx).jwt
-  
-
+    //const jwt = parseCookies(ctx).jwt
+    //console.log(jwt)
+    console.log('----------------------------------')
+    //console.log(ctx.req.cookies)    // { 'next-i18next': 'en' }
+    //const jwt = parseCookies(ctx).token
+    //console.log(parseCookies(ctx))  // { 'next-i18next': 'en' }
+    //const mycookie = Cookies.get('token')
+    const jwt = parseCookies(ctx).token
+    //console.log(jwt)
+      
+    ctx.jwt = jwt
     if (Component.getInitialProps) {
         pageProps = await Component.getInitialProps(ctx)
     }
 
+    
     // restricted-content --- any route requiring authorization
     if (!jwt) {
-        if (ctx.pathname === "/restricted-content") {
-            redirectUser(ctx, "/login");
+        if (ctx.pathname === "/courses") {
+            redirectUser(ctx, "/signup");
         }
     }
+    
 
     return {
         pageProps        

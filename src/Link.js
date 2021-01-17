@@ -5,11 +5,18 @@ import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import NextLink from 'next/link';
 import MuiLink from '@material-ui/core/Link';
+import nookies, { parseCookies, setCookie  } from 'nookies'
 
 const NextComposed = React.forwardRef(function NextComposed(props, ref) {
-  const { as, href, ...other } = props;
+  let { as, href, ...other } = props;
+  const jwt = nookies.get().token
 
+  /*
+  href = !jwt && href === '/courses' && `/signup`
+  as = !jwt && href === '/courses' && `/signup`
+  */
   return (
+  
     <NextLink href={href} as={as}>
       <a ref={ref} {...other} />
     </NextLink>

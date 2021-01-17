@@ -52,7 +52,8 @@ const ElItem = ({t, el}) => {
                     title={el.title}
                     subheader="January 10, 2021"
                 />
-                <Image src={process.env.API_URL + el.image.url} width={300} height={200} />
+                {/* <Image src={process.env.API_URL + el.image.url} width={300} height={200} /> */}
+                
                 <CardContent>
                     <Typography 
                         variant="body2" 

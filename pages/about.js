@@ -7,7 +7,7 @@ import {NextSeo} from 'next-seo'
 
 //Material UI
 import { makeStyles } from '@material-ui/core/styles';
-import {Grid} from '@material-ui/core'
+import {Grid, Button} from '@material-ui/core'
 
 //Context API
 import {useContext} from 'react'
@@ -20,7 +20,8 @@ import fetch from 'isomorphic-unfetch'
 
 //import getConfig from 'next/config'
 //const { publicRuntimeConfig } = getConfig();
-
+//import Link from '../src/Link'
+import Link from 'next/link'
 const useStyles = makeStyles((theme) => ({
  
 }));
@@ -42,6 +43,7 @@ const About = ({t}) => {
         <div>
             <NextSeo {...SEO} />                 
              {t('Title')}
+             <Button href='/courses'>Courses</Button>
         </div>
     )
 }
